@@ -42,7 +42,7 @@ export function* signUp({ payload }) {
   try {
     const { name, email, password } = payload;
 
-    yield call(api.post, 'users', {
+    yield call(api.post, '/users', {
       name,
       email,
       password,
@@ -50,6 +50,7 @@ export function* signUp({ payload }) {
 
     // history.push('/');
   } catch (err) {
+    console.log(err);
     Alert.alert(
       'Falha no cadastro',
       'Houve um erro no cadastro, verifique seus dados'
