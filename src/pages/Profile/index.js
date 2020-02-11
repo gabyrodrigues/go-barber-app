@@ -3,13 +3,15 @@ import { useSelector, useDispatch } from 'react-redux';
 //useDispatch responsável por atualizar as informações de cadastro //useSelector busca os dados já preenchidos 
 
 import { Container, Title, Form,
-         FormInput, Separator, SubmitButton    
+         FormInput, Separator, SubmitButton,
+         LogoutButton    
         } from './styles';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import Background from '../../components/Background';
 import { updateProfileRequest } from '../../store/modules/user/actions';
+import { signOut } from '../../store/modules/auth/actions';
 
 export default function Profile() {
     const dispatch = useDispatch();
@@ -41,6 +43,10 @@ export default function Profile() {
             password,
             confirmPassword
         }))
+    }
+
+    function handleLogout() {
+        dispatch(signOut());
     }
 
     return(
@@ -111,6 +117,7 @@ export default function Profile() {
                     />
 
                     <SubmitButton onPress={handleSubmit}>Atualizar perfil</SubmitButton>
+                    <LogoutButton onPress={handleLogout}>Sair do GoBarber</LogoutButton>
                 </Form>
             </Container>
         </Background>
